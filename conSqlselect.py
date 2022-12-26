@@ -13,3 +13,4 @@ print("conexion exitosa")
 ciudad=pd.read_sql("SELECT * FROM ciudad",conexion)
 #cerrar conexion
 conexion.close()
+#https://github.com/wpcodevo/python_fastapi
