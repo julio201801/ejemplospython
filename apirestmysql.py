@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://root:@localhost/myDbName"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-
+#creacion de la tabla
 class categoria(db.Model):
     cat_id = db.Column(db.Integer,primary_key=True)
     cat_nom= db.Column(db.String(100))
@@ -28,6 +28,20 @@ class categoria(db.Model):
         self.cat_desc = cat_desc
 #crear table
 db.create_all()
+#Esquema categoria
+class categoriaSchema(ma.Schema):
+    class Meta:
+        fields=('cat_id','cat_nom','cat_desc')
+#una sola respuesta        
+categoria_schema=categoriaSchema()
+#muchas respuestas
+categorias_schema=categoriaSchema(many=True)
+#GET
+@app.route('/categorias',methods=['GET'])
+def get_categorias():
+    all_categorias=categoria.query.all()
+    result=categorias_schema.dump(all_categorias)
+    return jsonify(result)
 
 @app.route('/demo',methods=['GET'])
 def demo():
@@ -36,5 +50,5 @@ def demo():
 
 #LANZAR
 if __name__ == '__main__':
-     app.run(debug=True, port=5008)
+     app.run(debug=True, port=5000)
     
