@@ -6,6 +6,8 @@
 # pip install marshmallow-sqlalchemy
 # pip install pymysql
 #https://flask-marshmallow.readthedocs.io/en/latest/
+#documentacion de java
+#https://github.com/osopromadze/Spring-Boot-Blog-REST-API
 from flask import Flask, jsonify, request
 #from flask_sqlalchemy import Sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
