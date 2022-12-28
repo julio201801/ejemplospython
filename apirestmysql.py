@@ -5,6 +5,7 @@
 # pip install flask-marshmallow
 # pip install marshmallow-sqlalchemy
 # pip install pymysql
+#https://flask-marshmallow.readthedocs.io/en/latest/
 from flask import Flask, jsonify, request
 #from flask_sqlalchemy import Sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
