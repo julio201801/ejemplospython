@@ -38,13 +38,28 @@ class categoriaSchema(ma.Schema):
 categoria_schema=categoriaSchema()
 #muchas respuestas
 categorias_schema=categoriaSchema(many=True)
-#GET
+#GET==================================================
 @app.route('/categorias',methods=['GET'])
 def get_categorias():
     all_categorias=categoria.query.all()
     result=categorias_schema.dump(all_categorias)
     return jsonify(result)
+#GET byId==============================================
+@app.route('/categorias/<id>',methods=['GET'])
+def get_categoria_byid(id):
+    una_categoria = categoria.query.get(id)
+    return categoria_schema.jsonify(una_categoria)
 
+#POST 
+@app.route('/categorias',methods=['POST'])
+def insert_categoria():
+    cat_nom = request.json['cat_nom']
+    cat_desc = request.json['cat_desc']
+    nuevo_registro = categoria(cat_nom,cat_desc)
+    db.session.add(nuevo_registro)
+    db.session.commit()
+    return categoria_schema.jsonify(nuevo_registro)
+#get de prueba    
 @app.route('/demo',methods=['GET'])
 def demo():
     return jsonify({'mensaje':'hola peru'})
