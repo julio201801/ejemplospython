@@ -59,6 +59,9 @@ def insert_categoria():
     db.session.add(nuevo_registro)
     db.session.commit()
     return categoria_schema.jsonify(nuevo_registro)
+# ///////////////////////////////////////////////////
+#PUT
+
 #continuar    
 #get de prueba    
 @app.route('/demo',methods=['GET'])
